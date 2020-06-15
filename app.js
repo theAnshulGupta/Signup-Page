@@ -6,8 +6,6 @@ const https = require("https");
 const app = express();
 
 app.use(express.static("public"));
-//* This is to call a folder and consider the content to be static.
-//*Note that the html does not refer to this folder since the node has already kept it inside of it
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -46,12 +44,11 @@ app.post("/", function (req, res) {
     if (response.statusCode == 200) {
       res.sendFile(__dirname + "/success.html");
     } else {
-      console.log(response.statusCode);
       res.sendFile(__dirname + "/faliure.html");
     }
 
     response.on("data", function (data) {
-      // console.log(JSON.parse(data));
+      console.log(JSON.parse(data));
     });
   });
 
@@ -69,11 +66,6 @@ app.post("/success", function (req, res) {
   res.redirect("/");
 });
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
   console.log("running on 3000");
 });
-
-//? API
-//! 8e65a18c68ba0a1041c7120634a91f69-us10
-//? List ID
-//! 19ef24005f
