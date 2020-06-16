@@ -1,7 +1,7 @@
 {
   "name": "signup-page",
-  "version": "1.0.0",
-  "description": "Page to signup for a newsletter",
+  "version": "3.0.0",
+  "description": "Page to signup for anything. Emails sent to MailChimp",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

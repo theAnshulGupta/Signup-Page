@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const request = require("request");
 const https = require("https");
 
 const app = express();
@@ -14,6 +13,7 @@ app.get("/", function (req, res) {
 });
 
 app.post("/", function (req, res) {
+  
   const firstName = req.body.First;
   const lastName = req.body.Last;
   const email = req.body.Email;
@@ -48,13 +48,11 @@ app.post("/", function (req, res) {
     }
 
     response.on("data", function (data) {
-      console.log(JSON.parse(data));
     });
   });
 
   request.write(jsonData);
   request.end();
-  console.log(res.statusCode);
 });
 
 app.post("/failure", function (req, res) {
@@ -62,10 +60,7 @@ app.post("/failure", function (req, res) {
 });
 
 app.post("/success", function (req, res) {
-  console.log(": " + req.statusCode);
   res.redirect("/");
 });
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log("running on 3000");
-});
+app.listen(process.env.PORT || 3000, function () {});
